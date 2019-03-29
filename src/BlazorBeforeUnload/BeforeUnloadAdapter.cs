@@ -6,40 +6,51 @@ namespace BlazorBeforeUnload
 {
     public class BeforeUnloadAdapter
     {
-        private readonly IJSRuntime _jsRuntime;
+        private readonly IJSRuntime jsRuntime;
 
         public BeforeUnloadAdapter(IJSRuntime jsRuntime)
         {
-            _jsRuntime = jsRuntime;
+            Console.WriteLine(nameof(BeforeUnloadAdapter));
+            this.jsRuntime = jsRuntime;
         }
 
-        private EventHandler<EventArgs> _BeforeUnloadHandler;
+        private EventHandler<BeforeUnloadArgs> beforeUnloadHandler;
 
-        public event EventHandler<EventArgs> BeforeUnloadHandler
+        public event EventHandler<BeforeUnloadArgs> BeforeUnloadHandler
         {
             add
             {
-                if (_BeforeUnloadHandler == null)
+                if (beforeUnloadHandler == null)
                 {
-                    this._jsRuntime.InvokeAsync<object>(
-                        "BeforeUnloadAdapter.AddEventListener",
+
+                    this.jsRuntime.InvokeAsync<object>(
+                        "BeforeUnloadAdapter.addEventListener",
                         new DotNetObjectRef(this)
                     );
                 }
-                _BeforeUnloadHandler += value;
+                beforeUnloadHandler += value;
             }
             remove
             {
-                _BeforeUnloadHandler -= value;
-                if (_BeforeUnloadHandler == null)
+                beforeUnloadHandler -= value;
+                if (beforeUnloadHandler == null)
                 {
-                    this._jsRuntime.InvokeAsync<object>("BeforeUnloadAdapter.RemoveEventListener");
+                    this.jsRuntime.InvokeAsync<object>("BeforeUnloadAdapter.removeEventListener");
                 }
             }
         }
 
         [JSInvokable]
-        public virtual void OnBeforeUnload(object e)
-            => _BeforeUnloadHandler?.Invoke(this, EventArgs.Empty);
+        public virtual DotNetObjectRef OnBeforeUnload(object e)
+        {
+            BeforeUnloadArgs args = new BeforeUnloadArgs();
+            beforeUnloadHandler?.Invoke(this, args);
+            if (args.CancelRequested)
+            {
+                return new DotNetObjectRef(args);
+            }
+            return null;
+        }
+
     }
 }

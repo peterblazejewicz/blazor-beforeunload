@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "none",
+    "strict": true,
+    "inlineSourceMap": true,
+    "inlineSources": true
+  },
+  "include": [
+    "./content/**/*.ts"
+  ]
+}
