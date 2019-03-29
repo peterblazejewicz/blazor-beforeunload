@@ -1,13 +1,38 @@
 ﻿@page "/counter"
 
+@using BlazorBeforeUnload
+@using System
+@implements IDisposable
+@inject BeforeUnloadAdapter BeforeUnloadAdapter
+
 <h1>Counter</h1>
 
 <p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" onclick="@IncrementCount">Click me</button>
+<br />
+<h2>Hey, try to visit <a href="http://blazor.net" target="_self">Blazor page</a></h2>
 
 @functions {
+
+
     int currentCount = 0;
+
+    protected override void OnInit()
+    {
+        BeforeUnloadAdapter.BeforeUnloadHandler += BeforeUnloadHandler;
+    }
+
+    public void Dispose()
+    {
+        BeforeUnloadAdapter.BeforeUnloadHandler -= BeforeUnloadHandler;
+    }
+
+    void BeforeUnloadHandler(object sender, BeforeUnloadArgs args)
+    {
+        args.CancelRequested = true;
+        args.ReturnValue = "Please save your data";
+    }
 
     void IncrementCount()
     {

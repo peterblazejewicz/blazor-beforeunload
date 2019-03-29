@@ -7,6 +7,7 @@ namespace BlazorBeforeUnloadSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddBeforeUnloadAdapter();
         }
 
         public void Configure(IComponentsApplicationBuilder app)
