@@ -1,4 +1,5 @@
 using Microsoft.JSInterop;
+using System;
 using System.Threading.Tasks;
 
 namespace BlazorBeforeUnload
@@ -12,9 +13,9 @@ namespace BlazorBeforeUnload
             _jsRuntime = jsRuntime;
         }
 
-        private EventHandler<EventHandlerArgs> _BeforeUnloadHandler;
+        private EventHandler<EventArgs> _BeforeUnloadHandler;
 
-        public event EventHandler<EventHandlerArgs> BeforeUnloadHandler
+        public event EventHandler<EventArgs> BeforeUnloadHandler
         {
             add
             {
