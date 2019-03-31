@@ -18,7 +18,7 @@ In your client pages use the instance via dependency injection:
 ```razor
 @page "/counter"
 
-@using BlazorBeforeUnload
+@using blazejewicz.Blazor.BeforeUnload
 @using System
 @implements IDisposable
 @inject BeforeUnloadAdapter BeforeUnloadAdapter

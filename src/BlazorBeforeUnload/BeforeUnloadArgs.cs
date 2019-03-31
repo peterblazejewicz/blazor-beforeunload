@@ -1,6 +1,6 @@
 using System;
 
-namespace BlazorBeforeUnload
+namespace blazejewicz.Blazor.BeforeUnload
 {
     public class BeforeUnloadArgs : EventArgs
     {

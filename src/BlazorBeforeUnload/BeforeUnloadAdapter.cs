@@ -1,8 +1,9 @@
+using blazejewicz.Blazor.BeforeUnload;
 using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
 
-namespace BlazorBeforeUnload
+namespace blazejewicz.Blazor.BeforeUnload
 {
     public class BeforeUnloadAdapter
     {

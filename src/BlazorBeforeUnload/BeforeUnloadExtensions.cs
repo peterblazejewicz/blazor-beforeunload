@@ -1,4 +1,4 @@
-using BlazorBeforeUnload;
+using blazejewicz.Blazor.BeforeUnload;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.Extensions.DependencyInjection
