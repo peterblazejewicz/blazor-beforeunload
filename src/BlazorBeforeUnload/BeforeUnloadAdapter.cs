@@ -1,7 +1,5 @@
-using blazejewicz.Blazor.BeforeUnload;
 using Microsoft.JSInterop;
 using System;
-using System.Threading.Tasks;
 
 namespace blazejewicz.Blazor.BeforeUnload
 {
@@ -24,9 +22,7 @@ namespace blazejewicz.Blazor.BeforeUnload
                 if (beforeUnloadHandler == null)
                 {
 
-                    this.jsRuntime.InvokeAsync<object>(
-                        "BeforeUnloadAdapter.addEventListener",
-                        new DotNetObjectRef(this)
+                    this.jsRuntime.InvokeAsync<object>("BeforeUnloadAdapter.addEventListener", DotNetObjectRef.Create(this)
                     );
                 }
                 beforeUnloadHandler += value;
@@ -42,13 +38,13 @@ namespace blazejewicz.Blazor.BeforeUnload
         }
 
         [JSInvokable]
-        public virtual DotNetObjectRef OnBeforeUnload(object e)
+        public virtual DotNetObjectRef<BeforeUnloadArgs> OnBeforeUnload(object e)
         {
             BeforeUnloadArgs args = new BeforeUnloadArgs();
             beforeUnloadHandler?.Invoke(this, args);
             if (args.CancelRequested)
             {
-                return new DotNetObjectRef(args);
+                return DotNetObjectRef.Create(args);
             }
             return null;
         }
