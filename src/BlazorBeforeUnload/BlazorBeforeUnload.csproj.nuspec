@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>BlazorBeforeUnload</id>
-    <version>1.0.0-alpha</version>
+    <version>1.0.1-alpha</version>
     <authors>piotrblazejewicz</authors>
     <owners>piotrblazejewicz</owners>
     <licenseUrl>https://raw.githubusercontent.com/peterblazejewicz/blazor-beforeunload/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/peterblazejewicz/blazor-beforeunload</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Blazor hook into native Window beforeunload</description>
-    <releaseNotes>Blazor hook into native Window beforeunload. First release</releaseNotes>
+    <releaseNotes>Blazor hook into native Window beforeunload</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>Blazor BeforeUnload</tags>
   </metadata>
