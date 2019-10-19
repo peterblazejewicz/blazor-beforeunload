@@ -16,7 +16,7 @@
     <PackageTags>Blazor Razor Components Before Unload beforeunload</PackageTags>
     <Description>Blazor hook into native Window beforeunload with async/await and cancel support.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>

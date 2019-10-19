@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>BlazorBeforeUnload</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>piotrblazejewicz</authors>
     <owners>piotrblazejewicz</owners>
     <licenseUrl>https://raw.githubusercontent.com/peterblazejewicz/blazor-beforeunload/master/LICENSE</licenseUrl>
