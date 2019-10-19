@@ -1,12 +1,12 @@
 {
   "name": "blazor-before-unload",
-  "version": "1.0.1",
-  "main": "content/BeforeUnloadAdapater.js",
+  "version": "1.0.2",
+  "main": "wwwroot/BeforeUnloadAdapater.js",
   "scripts": {
     "build": "tsc"
   },
   "private": true,
   "devDependencies": {
-    "typescript": "^3.4.1"
+    "typescript": "^3.6.4"
   }
 }

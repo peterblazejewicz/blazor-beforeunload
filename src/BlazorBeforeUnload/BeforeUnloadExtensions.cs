@@ -5,9 +5,9 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class BeforeUnloadExtensions
     {
-        public static IServiceCollection AddBeforeUnloadAdapter(this IServiceCollection services)
+        public static IServiceCollection AddBeforeUnload(this IServiceCollection services)
         {
-            return services.AddSingleton<BeforeUnloadAdapter>();
+            return services.AddSingleton<BeforeUnload>();
         }
     }
 }

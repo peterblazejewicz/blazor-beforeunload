@@ -1,26 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <Version>1.0.1-alpha</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <IsPackable>true</IsPackable>
-    <RestoreAdditionalProjectSources>
-      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
-      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
-    </RestoreAdditionalProjectSources>
-    <LangVersion>7.3</LangVersion>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <RootNamespace>blazejewicz.Blazor.BeforeUnload</RootNamespace>
+
+    <Authors>Piotr Blazejewicz</Authors>
+    <Company></Company>
+    <Copyright>Copyright 2019 (c) Piotr Blazejewicz. All rights reserved.</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/peterblazejewicz/blazor-beforeunload</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl>https://github.com/peterblazejewicz/blazor-beforeunload</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Blazor Razor Components Before Unload beforeunload</PackageTags>
+    <Description>Blazor hook into native Window beforeunload with async/await and cancel support.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <!-- .js/.css files will be referenced via <script>/<link> tags; other content files will just be included in the app's 'dist' directory without any tags referencing them -->
-    <EmbeddedResource Include="content\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="content\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="content\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="wwwroot\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="wwwroot\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="wwwroot\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview7.19365.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview7.19365.7" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
   </ItemGroup>
 
 </Project>

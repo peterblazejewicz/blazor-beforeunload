@@ -9,7 +9,7 @@ In your startup configuration configure DI:
 ```cs
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddBeforeUnloadAdapter();
+    services.AddBeforeUnload();
 }
 ```
 
@@ -21,18 +21,18 @@ In your client pages use the instance via dependency injection:
 @using blazejewicz.Blazor.BeforeUnload
 @using System
 @implements IDisposable
-@inject BeforeUnloadAdapter BeforeUnloadAdapter
+@inject BeforeUnload BeforeUnload
 ```
 
 ```cs
-protected override void OnInit()
+protected override void OnInitialized()
 {
-    BeforeUnloadAdapter.BeforeUnloadHandler += BeforeUnloadHandler;
+    BeforeUnload.BeforeUnloadHandler += BeforeUnloadHandler;
 }
 
 public void Dispose()
 {
-    BeforeUnloadAdapter.BeforeUnloadHandler -= BeforeUnloadHandler;
+    BeforeUnload.BeforeUnloadHandler -= BeforeUnloadHandler;
 }
 
 void BeforeUnloadHandler(object sender, BeforeUnloadArgs args)

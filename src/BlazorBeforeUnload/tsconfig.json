@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "none",
-    "strict": true,
     "inlineSourceMap": true,
-    "inlineSources": true
+    "inlineSources": true,
+    "module": "umd",
+    "outDir": "./wwwroot",
+    "strict": true,
+    "target": "es5"
   },
   "include": [
-    "./content/**/*.ts"
+    "interop/BeforeUnload.ts"
   ]
 }

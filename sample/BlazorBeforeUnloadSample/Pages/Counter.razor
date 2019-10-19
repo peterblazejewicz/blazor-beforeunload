@@ -3,13 +3,13 @@
 @using blazejewicz.Blazor.BeforeUnload
 @using System
 @implements IDisposable
-@inject BeforeUnloadAdapter BeforeUnloadAdapter
+@inject BeforeUnload BeforeUnload
 
 <h1>Counter</h1>
 
 <p>Current count: @currentCount</p>
 
-<button class="btn btn-primary" onclick="@IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 <br />
 <h2>Hey, try to visit <a href="http://blazor.net" target="_self">Blazor page</a></h2>
 
@@ -18,14 +18,14 @@
 
     int currentCount = 0;
 
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
-        BeforeUnloadAdapter.BeforeUnloadHandler += BeforeUnloadHandler;
+        BeforeUnload.BeforeUnloadHandler += BeforeUnloadHandler;
     }
 
     public void Dispose()
     {
-        BeforeUnloadAdapter.BeforeUnloadHandler -= BeforeUnloadHandler;
+        BeforeUnload.BeforeUnloadHandler -= BeforeUnloadHandler;
     }
 
     void BeforeUnloadHandler(object sender, BeforeUnloadArgs args)

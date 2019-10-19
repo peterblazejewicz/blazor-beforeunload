@@ -1,19 +1,20 @@
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using System;
 
 namespace blazejewicz.Blazor.BeforeUnload
 {
-    public class BeforeUnloadAdapter
+    public class BeforeUnload
     {
-        private readonly IJSRuntime jsRuntime;
-
-        public BeforeUnloadAdapter(IJSRuntime jsRuntime)
-        {
-            Console.WriteLine(nameof(BeforeUnloadAdapter));
-            this.jsRuntime = jsRuntime;
-        }
+        private IJSRuntime JSRuntime { get; set; }
 
         private EventHandler<BeforeUnloadArgs> beforeUnloadHandler;
+
+        public BeforeUnload(IJSRuntime JSRuntime)
+        {
+            this.JSRuntime = JSRuntime;
+        }
 
         public event EventHandler<BeforeUnloadArgs> BeforeUnloadHandler
         {
@@ -21,8 +22,7 @@ namespace blazejewicz.Blazor.BeforeUnload
             {
                 if (beforeUnloadHandler == null)
                 {
-
-                    this.jsRuntime.InvokeAsync<object>("BeforeUnloadAdapter.addEventListener", DotNetObjectRef.Create(this)
+                    this.JSRuntime.InvokeVoidAsync("BeforeUnloadInterop.addEventListener", DotNetObjectReference.Create(this)
                     );
                 }
                 beforeUnloadHandler += value;
@@ -32,19 +32,19 @@ namespace blazejewicz.Blazor.BeforeUnload
                 beforeUnloadHandler -= value;
                 if (beforeUnloadHandler == null)
                 {
-                    this.jsRuntime.InvokeAsync<object>("BeforeUnloadAdapter.removeEventListener");
+                    this.JSRuntime.InvokeVoidAsync("BeforeUnloadInterop.removeEventListener");
                 }
             }
         }
 
         [JSInvokable]
-        public virtual DotNetObjectRef<BeforeUnloadArgs> OnBeforeUnload(object e)
+        public DotNetObjectReference<BeforeUnloadArgs> OnBeforeUnload(object e)
         {
             BeforeUnloadArgs args = new BeforeUnloadArgs();
             beforeUnloadHandler?.Invoke(this, args);
             if (args.CancelRequested)
             {
-                return DotNetObjectRef.Create(args);
+                return DotNetObjectReference.Create(args);
             }
             return null;
         }

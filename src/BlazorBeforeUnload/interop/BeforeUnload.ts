@@ -1,4 +1,4 @@
-class BeforeUnloadAdapter {
+class BeforeUnload {
   private instance: any | undefined;
 
   constructor() {
@@ -29,8 +29,8 @@ class BeforeUnloadAdapter {
 }
 
 interface Window {
-  BeforeUnloadAdapter: BeforeUnloadAdapter;
+  BeforeUnloadInterop: BeforeUnload;
 }
 
-window.BeforeUnloadAdapter =
-  window.BeforeUnloadAdapter || new BeforeUnloadAdapter();
+window.BeforeUnloadInterop =
+  window.BeforeUnloadInterop || new BeforeUnload();
